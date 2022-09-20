@@ -1,0 +1,15 @@
+{
+    "center": [0,0],
+    "markerImage24" : "https://cdn2.iconfinder.com/data/icons/social-media-and-payment/64/-47-24.png",
+    "markerImage32" : "https://cdn2.iconfinder.com/data/icons/social-media-and-payment/64/-47-32.png",
+    "markerImage64" : "https://cdn2.iconfinder.com/data/icons/social-media-and-payment/64/-47-64.png",
+    "apibaseUrl":"http://43.205.195.112/api",
+    "apiUrl":{
+    "v1":{
+            "requirements":"/v1/requirement",
+            "needs":"/v1/needs",
+            "sendOtp":"/v1/profile/otp",
+            "otpLogin":"/v1/profile/otpLogin"
+    }
+    }
+}
