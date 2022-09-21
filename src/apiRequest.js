@@ -13,6 +13,15 @@ const getRequirements = async () => {
     });
   };
 
+
+const getUserNeeds = async () => {
+    console.log(getUrl("requirements","v1"))
+    return axios.get("http://43.205.195.112/api/v1/users/1/needs").then((response) => {
+      console.log("response.data", response.data);
+      return response.data;
+    });
+  };
+
   
 
 const sendOtp = async (phone) => {
@@ -102,4 +111,4 @@ const getNeeds = async(latitude, longitude, distances) => {
     
   };
 
-  export {getRequirements,getHelp,getNeeds, otpLogin, sendOtp};
+  export {getRequirements,getHelp,getNeeds, otpLogin, sendOtp,getUserNeeds};

@@ -16,9 +16,6 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
-import Typography from '@mui/material/Typography';
-import PersonInfoCard from './personinfoComponent.tsx';
 interface TablePaginationActionsProps {
   count: number;
   page: number;
@@ -30,9 +27,8 @@ interface TablePaginationActionsProps {
 }
 function TablePaginationActions(props: TablePaginationActionsProps) {
   const theme = useTheme();
- 
   const { count, page, rowsPerPage, onPageChange } = props;
-  
+
   const handleFirstPageButtonClick = (
     event: React.MouseEvent<HTMLButtonElement>,
   ) => {
@@ -86,25 +82,12 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 }
 
 export default function NeedTable(props) {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  
   const  rows = props.needs
   const newAllRequirements= props.newAllRequirements
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-   
-    boxShadow: 24,
-    p: 4,
-  };
-  
+  console.log("needs table data----------------",newAllRequirements);
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -127,9 +110,8 @@ export default function NeedTable(props) {
       <Table sx={{ }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Dis(km)</TableCell>
             <TableCell align="left">Req</TableCell>
-            <TableCell align="left">Assist</TableCell>
+            <TableCell align="left">Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -138,13 +120,13 @@ export default function NeedTable(props) {
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
+            
             <TableRow
               key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell align="left">{parseInt(row.distance)}</TableCell>
               <TableCell align="left">{newAllRequirements[row.req_type_id]}</TableCell>
-              <TableCell align="left"><Button onClick={handleOpen} variant="outlined" >Assist</Button></TableCell>
+              <TableCell align="left">{ row.is_fullfilled?"Assisted":"Pending"}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -169,17 +151,6 @@ export default function NeedTable(props) {
           </TableRow>
         </TableFooter>
       </Table>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-        <PersonInfoCard></PersonInfoCard>
-        </Box>
-      </Modal>
     </TableContainer>
-    
   );
 }

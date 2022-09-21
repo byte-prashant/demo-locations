@@ -10,9 +10,10 @@ const getUrl= function(apiName,version){
         return baseUrl+mapConfig.apiUrl.v1.needs;
     }else if (apiName=="sendOtp" && version=="v1"){
         return baseUrl+mapConfig.apiUrl.v1.sendOtp;
-
     }else if (apiName=="otpLogin" && version=="v1"){
-        return baseUrl+mapConfig.apiUrl.v1.otpLogin
+        return baseUrl+mapConfig.apiUrl.v1.otpLogin;
+    }else if (apiName=="userNeeds" && version=="v1"){
+        return baseUrl+mapConfig.apiUrl.v1.needs
     }
 }
 

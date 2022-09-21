@@ -67,13 +67,14 @@ const steps = [
   
 ];
 
-function OtpLoginComponent() {
+function OtpLoginComponent(props) {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const [phone, setPhone] = React.useState("");
   const [otp,setOtp] = React.useState("");
   const [isOtpSent, setOtpSend] = React.useState(0);
-  const [isLoggedIn, setLoggedIn] = React.useState(0);
+  const setLoggedIn = props.setisLoggedIn
+  const isLoggedIn = props.isLoggedIn
   const maxSteps = steps.length;
 
   const handlePhoneChange = (event: SelectChangeEvent) => {
@@ -96,6 +97,7 @@ function OtpLoginComponent() {
     var res = await otpLogin(phone,otp,"","")
     if (res.status==200){
       setLoggedIn(1)
+      console.log(isLoggedIn);
       
     }else{
       setLoggedIn(2)

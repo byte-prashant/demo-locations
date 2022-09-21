@@ -9,7 +9,8 @@
             "requirements":"/v1/requirement",
             "needs":"/v1/needs",
             "sendOtp":"/v1/profile/otp",
-            "otpLogin":"/v1/profile/otpLogin"
+            "otpLogin":"/v1/profile/otpLogin",
+            "userNeeds":"/v1/users/{}/needs"
     }
     }
 }

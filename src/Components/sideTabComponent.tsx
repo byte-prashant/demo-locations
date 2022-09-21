@@ -7,7 +7,20 @@ import TextField from '@mui/material/TextField';
 import  {CreateRequirementForm} from './createReuirementFormComponent.tsx';
 import {DisplaySeekerComponent} from './displaySeekerComponent';
 import {OtpLoginComponent} from './otpLoginComponent.tsx'
+import {ProfileData} from './userProfileCompoent.js'
 import AppBar from '@mui/material/AppBar';
+import{ useEffect} from "react";
+
+function Profile(props){
+  const isloggedin = props.isLoggedIn
+
+  if (isloggedin!=1){
+      return <OtpLoginComponent {...props}></OtpLoginComponent>
+  }else{
+      return <ProfileData {...props}></ProfileData>
+  }
+
+}
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -44,11 +57,14 @@ function a11yProps(index: number) {
 
 const  VerticalTabs = (props) =>{
   const [value, setValue] = React.useState(0);
-
+  const [isLoggedIn,setisLoggedIn] =  React.useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-  
+  console.log("isloggedin----------------------------", isLoggedIn);
+  useEffect( ()=>{
+    console.log("00000000000000000000000000000000",isLoggedIn);
+  },[isLoggedIn])
   return (
     <Box
     sx={{ width: '100%' }}
@@ -77,7 +93,7 @@ const  VerticalTabs = (props) =>{
             <DisplaySeekerComponent  requirements={props.requirements} userloca= {props.userloca} setmarrkersLonlat={props.setmarrkersLonlat}></DisplaySeekerComponent>
           </TabPanel>
           <TabPanel value={value} index={2}>
-            <OtpLoginComponent></OtpLoginComponent>
+            <Profile isLoggedIn={isLoggedIn} setisLoggedIn={setisLoggedIn} requirements={props.requirements} userloca= {props.userloca} setmarrkersLonlat={props.setmarrkersLonlat} ></Profile>
           </TabPanel>
       
           
